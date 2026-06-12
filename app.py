@@ -7,15 +7,14 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 Scss(app)
 
-# Ensure the instance directory exists
-os.makedirs("/app/instance", exist_ok=True)
+# Ensure the independent data directory exists
+DATABASE_DIR = "/data"
+os.makedirs(DATABASE_DIR, exist_ok=True)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv(
- "DATABASE_URL",
- "sqlite:////app/instance/database.db"
-)
-
+# Target the database file securely inside that persistent folder
+app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{os.path.join(DATABASE_DIR, 'database.db')}"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
 
 db = SQLAlchemy(app)
 
