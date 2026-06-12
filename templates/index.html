@@ -24,7 +24,7 @@
                     <!-- Changed .create to .date_created as it's a more common naming convention -->
                     <td>{{ task.create.strftime('%Y-%m-%d') if task.create else '-' }}</td>
                     <td>
-                        <a href="/update/{{ task.id }}">Edit</a>
+                        <a href="/edit/{{ task.id }}">Edit</a>
                         <span class="separator">|</span>
                         <a href="/delete/{{ task.id }}" style="color: red;">Delete</a>
                     </td>
